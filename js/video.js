@@ -1,7 +1,5 @@
 var video;
 
-document.querySelector("#volume").innerHTML = "100%"
-
 window.addEventListener("load", function() {
 	console.log("Good job opening the window")
 
@@ -11,9 +9,16 @@ video = document.querySelector("#player1");
 
 video.load()
 
+var volumeSlider = document.querySelector("#slider");
+volumeSlider.addEventListener("input", function() {
+	video.volume = volumeSlider.value / 100;
+	document.querySelector("#volume").innerHTML = volumeSlider.value + "%";
+});
+
 document.querySelector("#play").addEventListener("click", function() {
 	console.log("Play Video")
 	video.play();
+	document.querySelector("#volume").innerHTML = volumeSlider.value + "%"
 }) 
 
 
@@ -68,8 +73,4 @@ document.querySelector("#mute").addEventListener("click", function() {
 	}
 });
 
-var volumeSlider = document.querySelector("#slider");
-volumeSlider.addEventListener("input", function() {
-	video.volume = volumeSlider.value / 100;
-	document.querySelector("#volume").innerHTML = volumeSlider.value + "%";
-});
+
